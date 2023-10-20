@@ -1,6 +1,6 @@
 export default {
   content: [
-    "./index.html",
+    "/index.html 200",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
