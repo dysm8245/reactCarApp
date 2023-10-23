@@ -11,7 +11,7 @@ const Navbar = () => {
         <nav className="flex grow h-12 bg-yellow-300">
             <div className="flex justify-start items-center grow">
                 <h1 className="mx-16 font-bold">
-                    Meme Generator
+                    Car Inventory
                 </h1>
             </div>
             <div className="hidden sm:block justify-end items-center mt-3 mr-2">
