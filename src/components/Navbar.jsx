@@ -39,7 +39,7 @@ const Navbar = () => {
         </nav>
         {open?(
             <div className="flex grow justify-end">
-                <div className="grid grid-cols-1 sm:hidden fixed bg-slate-200">
+                <div className="grid grid-cols-1 sm:hidden absolute bg-slate-200">
                     <div className="flex w-32 border border-black justify-center rounded-lg">
                         <a href="/">Home</a>
                     </div>
