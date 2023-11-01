@@ -21,6 +21,7 @@ const serverCalls = {
         });
         if(!response.ok){
             throw new Error("Failed to get user-token")
+
         }
         const token = await response.json()
         return token

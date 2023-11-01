@@ -7,15 +7,16 @@ import SignIn from "./pages/SignIn.jsx"
 import SignUp from "./pages/SignUp.jsx"
 import Cars from "./pages/Cars.jsx"
 import SignOut from "./pages/SignOut.jsx"
+import { useContext } from "react"
+import useGetToken from "./custom-hooks/GetToken.js"
 
 
 function App() {
 
   return (
-    // serverCalls.setUser()
     <>
       <BrowserRouter>
-      <Navbar/>
+        <Navbar/>
         <Provider store={store}>
           <Routes>
             <Route key={1} path={"/"} element={<Home/>}/>

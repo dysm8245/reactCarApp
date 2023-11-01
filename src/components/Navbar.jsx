@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { createContext, useState } from "react"
+import useGetToken from "../custom-hooks/GetToken"
+import { useauth } from "./AuthProvider"
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
+    const {isLoggedIn} = useauth()
 
     const handleOpen = () => {
         setOpen(!open)
@@ -16,21 +19,28 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block justify-end items-center mt-3 mr-2">
                 <ul className="inline-flex space-x-5">
-                    <li className="hover:text-white">
-                        <a href="/">Home</a>
-                    </li>
-                    <li className="hover:text-white">
-                        <a href="/cars">Cars</a>
-                    </li>
-                    <li className="hover:text-white">
-                        <a href="/signin">Sign-In</a>
-                    </li>
-                    <li className="hover:text-white">
-                        <a href="/signup">Sign-Up</a>
-                    </li>
-                    <li className="hover:text-white">
-                        <a href="/signout">Sign-Out</a>
-                    </li>
+                    {!isLoggedIn?(
+                        <>
+                            <li className="hover:text-white">
+                                <a href="/signin">Sign-In</a>
+                            </li>
+                            <li className="hover:text-white">
+                                <a href="/signup">Sign-Up</a>
+                            </li>
+                        </>
+                    ):(
+                        <>
+                            <li className="hover:text-white">
+                                <a href="/">Home</a>
+                            </li>
+                            <li className="hover:text-white">
+                                <a href="/cars">Cars</a>
+                            </li>
+                            <li className="hover:text-white">
+                                <a href="/signout">Sign-Out</a>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </div>
             <div className="flex sm:hidden justify-end items-center mr-2">
@@ -40,21 +50,28 @@ const Navbar = () => {
         {open?(
             <div className="flex grow justify-end">
                 <div className="grid grid-cols-1 sm:hidden absolute bg-slate-200">
-                    <div className="flex w-32 border border-black justify-center rounded-lg">
-                        <a href="/">Home</a>
-                    </div>
-                    <div className="flex w-32 border border-black justify-center rounded-lg">
-                        <a href="/cars">Cars</a>
-                    </div>
-                    <div className="flex w-32 border border-black justify-center rounded-lg">
-                        <a href="/signin">Sign-In</a>
-                    </div>
-                    <div className="flex w-32 border border-black justify-center rounded-lg">
-                        <a href="/signup">Sign-Up</a>
-                    </div>
-                    <div className="flex w-32 border border-black justify-center rounded-lg">
-                        <a href="/signout">Sign-Out</a>
-                    </div>
+                    {!isLoggedIn?(
+                        <>
+                            <div className="flex w-32 border border-black justify-center rounded-lg">
+                                <a href="/signin">Sign-In</a>
+                            </div>
+                            <div className="flex w-32 border border-black justify-center rounded-lg">
+                                <a href="/signup">Sign-Up</a>
+                            </div>
+                        </>
+                    ):(
+                        <>
+                            <div className="flex w-32 border border-black justify-center rounded-lg">
+                                <a href="/">Home</a>
+                            </div>
+                            <div className="flex w-32 border border-black justify-center rounded-lg">
+                                <a href="/cars">Cars</a>
+                            </div>
+                            <div className="flex w-32 border border-black justify-center rounded-lg">
+                                <a href="/signout">Sign-Out</a>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         ):(

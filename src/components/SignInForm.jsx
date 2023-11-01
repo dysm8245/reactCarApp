@@ -4,9 +4,12 @@ import {chooseUsername, choosePassword} from "../redux/slices/userSlice"
 import Input from "./Input.jsx"
 import serverCalls from "../api/server.js"
 import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useauth } from "./AuthProvider"
 
 const SignInForm = () => {
     const {register, handleSubmit} = useForm({})
+    const {login} = useauth()
     const dispatch = useDispatch()
     const store = useStore()
     const navigate = useNavigate()
@@ -14,10 +17,17 @@ const SignInForm = () => {
     const onSubmit = async (data) =>{
         dispatch(chooseUsername(data.Username))
         dispatch(choosePassword(data.Password))
-        const token = await serverCalls.login(store.getState().user)
-        localStorage.setItem("token", token.token)
-        serverCalls.setUser()
-        navigate("/cars")
+        await serverCalls.login(store.getState().user)
+        .then(token =>{
+            localStorage.setItem("token", token.token)
+            serverCalls.setUser()
+            login()
+            navigate("/cars")
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+    
     }
 
   return (

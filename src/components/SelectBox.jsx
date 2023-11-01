@@ -12,7 +12,8 @@ const SelectBox = (id) => {
     }
     {if(clicked){
         dispatch(chooseId(id.id))
-        return(<div className="w-5 h-5 bg-blue-700 border" onClick={select}></div>)
+        // console.log(store.getState().car.id)
+        return(<div className="w-5 h-5 bg-blue-700 border border-black" onClick={select}></div>)
     }
     else{
         if(store.getState().car.id == null){
@@ -21,7 +22,8 @@ const SelectBox = (id) => {
         else{
             dispatch(chooseId(store.getState().car.id))
         }
-        return(<div className="w-5 h-5 bg-white border" onClick={select}></div>)
+        // console.log(store.getState().car.id)
+        return(<div className="w-5 h-5 bg-white border border-black" onClick={select}></div>)
     }}
 }
 

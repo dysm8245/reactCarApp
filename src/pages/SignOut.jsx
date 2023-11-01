@@ -1,9 +1,12 @@
 import {useNavigate} from "react-router-dom"
+import { useauth } from "../components/AuthProvider"
 
 const SignOut = () => {
+  const { signout } = useauth()
     const navigate = useNavigate()
     const logout = () =>{
         window.localStorage.clear()
+        signout()
         navigate("/signin")
     }
     const redirect = () =>{
